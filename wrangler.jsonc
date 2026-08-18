@@ -14,7 +14,9 @@
 		// TEAM_DOMAIN may be the base Access URL or the full /cdn-cgi/access/certs URL.
 		// The worker now fails closed outside local development if Access is not configured.
 		"DOMAINS": "busser.mba",
-		"EMAIL_ADDRESSES": ["avery@busser.mba"]
+		"EMAIL_ADDRESSES": [
+			"avery@busser.mba"
+		]
 	},
 	"send_email": [
 		{
@@ -27,6 +29,12 @@
 			"binding": "BUCKET",
 			"bucket_name": "agentic-inbox",
 			"preview_bucket_name": "agentic-inbox"
+		}
+	],
+	"routes": [
+		{
+			"pattern": "inbox.busser.mba",
+			"custom_domain": true
 		}
 	],
 	"ai": {
