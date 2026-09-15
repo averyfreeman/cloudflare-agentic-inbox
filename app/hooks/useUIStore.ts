@@ -5,8 +5,10 @@
 import { create } from "zustand";
 import type { Email } from "~/types";
 
+/** Describes the `ComposeMode` data contract. */
 export type ComposeMode = "new" | "reply" | "reply-all" | "forward";
 
+/** Describes the `ComposeOptions` data contract. */
 export interface ComposeOptions {
 	mode: ComposeMode;
 	originalEmail?: Email | null;
@@ -43,6 +45,7 @@ interface UIState {
 	closeComposeModal: () => void;
 }
 
+/** Shared `useUIStore` configuration or API value. */
 export const useUIStore = create<UIState>((set, get) => ({
 	selectedEmailId: null,
 	isComposing: false,

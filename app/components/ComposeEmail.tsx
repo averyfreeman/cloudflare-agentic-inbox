@@ -9,6 +9,7 @@ import { useComposeForm } from "~/hooks/useComposeForm";
 import RichTextEditor from "./RichTextEditor";
 import { useUIStore } from "~/hooks/useUIStore";
 
+/** Handles the `ComposeEmail` operation. */
 export default function ComposeEmail() {
 	const { mailboxId, folder } = useParams<{
 		mailboxId: string;

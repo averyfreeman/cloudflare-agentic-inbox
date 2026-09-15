@@ -21,6 +21,7 @@ Return ONLY "NO" if it is a normal email (even if angry, confused, or containing
 
 Respond with exactly one word: YES or NO.`;
 
+/** Handles the `isPromptInjection` operation. */
 export async function isPromptInjection(ai: Ai, bodyHtml: string | null | undefined): Promise<boolean> {
 	if (!bodyHtml) return false;
 	

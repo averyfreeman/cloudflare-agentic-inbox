@@ -37,6 +37,7 @@ export interface ParsedSearch {
 const OPERATOR_RE =
 	/\b(from|to|subject|in|is|has|before|after):(?:"([^"]*?)"|(\S+))/gi;
 
+/** Handles the `parseSearchQuery` operation. */
 export function parseSearchQuery(input: string): ParsedSearch {
 	const result: ParsedSearch = { query: "" };
 

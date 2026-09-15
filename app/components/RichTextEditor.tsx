@@ -33,6 +33,7 @@ interface RichTextEditorProps {
 	onChange: (value: string) => void;
 }
 
+/** Handles the `RichTextEditor` operation. */
 export default function RichTextEditor({
 	value,
 	onChange,

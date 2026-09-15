@@ -140,6 +140,7 @@ function FolderEmptyState({
 	);
 }
 
+/** Handles the `EmailListRoute` operation. */
 export default function EmailListRoute() {
 	const { mailboxId, folder } = useParams<{
 		mailboxId: string;

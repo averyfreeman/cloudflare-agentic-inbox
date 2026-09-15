@@ -31,6 +31,7 @@ export interface EmailMetadata {
 	snippet?: string | null;
 }
 
+/** Describes the `EmailFull` data contract. */
 export interface EmailFull extends EmailMetadata {
 	body?: string | null;
 	message_id?: string | null;
@@ -38,6 +39,7 @@ export interface EmailFull extends EmailMetadata {
 	attachments?: AttachmentInfo[];
 }
 
+/** Describes the `AttachmentInfo` data contract. */
 export interface AttachmentInfo {
 	id: string;
 	filename: string;
@@ -54,10 +56,12 @@ const RecipientFieldSchema = z.union([
 	z.array(z.string().email()).min(1),
 ]);
 
+/** Shared `ErrorResponseSchema` configuration or API value. */
 export const ErrorResponseSchema = z.object({
 	error: z.string(),
 });
 
+/** Shared `SendEmailRequestSchema` configuration or API value. */
 export const SendEmailRequestSchema = z
 	.object({
 		to: RecipientFieldSchema,
@@ -89,6 +93,7 @@ export const SendEmailRequestSchema = z
 		message: "Either 'html' or 'text' must be provided",
 	});
 
+/** Shared `SendEmailResponseSchema` configuration or API value. */
 export const SendEmailResponseSchema = z.object({
 	id: z.string(),
 	status: z.string(),

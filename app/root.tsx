@@ -75,6 +75,7 @@ const KumoLink = forwardRef<
 	return <a href={href} ref={ref} {...props} />;
 });
 
+/** Handles the `Layout` operation. */
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
@@ -101,6 +102,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
+/** Handles the `HydrateFallback` operation. */
 export function HydrateFallback() {
 	return (
 		<div className="flex items-center justify-center h-screen">
@@ -109,6 +111,7 @@ export function HydrateFallback() {
 	);
 }
 
+/** Handles the `App` operation. */
 export default function App() {
 	// Use useState to ensure each SSR request gets a fresh client while the
 	// browser reuses the same singleton across navigations.
@@ -126,6 +129,7 @@ export default function App() {
 	);
 }
 
+/** Handles the `ErrorBoundary` operation. */
 export function ErrorBoundary({ error }: { error: unknown }) {
 	let title = "Something went wrong";
 	let description = "An unexpected error occurred. Please try again.";

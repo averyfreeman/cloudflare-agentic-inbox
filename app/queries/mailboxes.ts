@@ -7,6 +7,7 @@ import api from "~/services/api";
 import type { Mailbox } from "~/types";
 import { queryKeys } from "./keys";
 
+/** Handles the `useMailboxes` operation. */
 export function useMailboxes() {
 	return useQuery<Mailbox[]>({
 		queryKey: queryKeys.mailboxes.all,
@@ -14,6 +15,7 @@ export function useMailboxes() {
 	});
 }
 
+/** Handles the `useMailbox` operation. */
 export function useMailbox(mailboxId: string | undefined) {
 	return useQuery<Mailbox>({
 		queryKey: mailboxId
@@ -24,6 +26,7 @@ export function useMailbox(mailboxId: string | undefined) {
 	});
 }
 
+/** Handles the `useCreateMailbox` operation. */
 export function useCreateMailbox() {
 	const qc = useQueryClient();
 	return useMutation({
@@ -35,6 +38,7 @@ export function useCreateMailbox() {
 	});
 }
 
+/** Handles the `useUpdateMailbox` operation. */
 export function useUpdateMailbox() {
 	const qc = useQueryClient();
 	return useMutation({
@@ -50,6 +54,7 @@ export function useUpdateMailbox() {
 	});
 }
 
+/** Handles the `useDeleteMailbox` operation. */
 export function useDeleteMailbox() {
 	const qc = useQueryClient();
 	return useMutation({

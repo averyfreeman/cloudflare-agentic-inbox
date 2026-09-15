@@ -58,6 +58,7 @@ const TOOLS = [
 	{ name: "move_email", desc: "Move email to a folder" },
 ];
 
+/** Handles the `MCPPanel` operation. */
 export default function MCPPanel() {
 	const { mailboxId } = useParams<{ mailboxId: string }>();
 	const baseUrl =

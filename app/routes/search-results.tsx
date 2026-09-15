@@ -29,6 +29,7 @@ function highlightTerms(text: string, query: string): React.ReactNode {
 	} catch { return text; }
 }
 
+/** Handles the `SearchResultsRoute` operation. */
 export default function SearchResultsRoute() {
 	const { mailboxId } = useParams<{ mailboxId: string }>();
 	const [searchParams] = useSearchParams();

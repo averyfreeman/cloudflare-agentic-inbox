@@ -4,6 +4,7 @@
 
 import { Navigate } from "react-router";
 
+/** Handles the `MailboxIndexRoute` operation. */
 export default function MailboxIndexRoute() {
   return <Navigate to="emails/inbox" replace />;
 }

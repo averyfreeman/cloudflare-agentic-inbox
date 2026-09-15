@@ -99,6 +99,7 @@ interface AttachmentData {
 	disposition?: string | null;
 }
 
+/** Provides the `MailboxDO` runtime behavior. */
 export class MailboxDO extends DurableObject<Env> {
 	declare __DURABLE_OBJECT_BRAND: never;
 	db: ReturnType<typeof drizzle>;

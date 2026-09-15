@@ -21,6 +21,7 @@ import type { MailboxContext } from "../lib/mailbox";
 type AppContext = Context<MailboxContext>;
 type RateLimitStub = { checkSendRateLimit: () => Promise<string | null> };
 
+/** Handles the `handleReplyEmail` operation. */
 export async function handleReplyEmail(c: AppContext) {
 	const mailboxId = c.req.param("mailboxId") ?? "";
 	const id = c.req.param("id") ?? "";
@@ -112,6 +113,7 @@ export async function handleReplyEmail(c: AppContext) {
 	return c.json({ id: messageId, status: "sent" }, 202);
 }
 
+/** Handles the `handleForwardEmail` operation. */
 export async function handleForwardEmail(c: AppContext) {
 	const mailboxId = c.req.param("mailboxId") ?? "";
 	const id = c.req.param("id") ?? "";

@@ -8,6 +8,7 @@ interface EmailPanelHeaderProps {
 	showThreadCount: boolean;
 }
 
+/** Handles the `EmailPanelHeader` operation. */
 export default function EmailPanelHeader({
 	subject,
 	messageCount,

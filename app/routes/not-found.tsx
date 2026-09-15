@@ -6,6 +6,7 @@ import { Button, Empty } from "@cloudflare/kumo";
 import { WarningIcon } from "@phosphor-icons/react";
 import { useNavigate } from "react-router";
 
+/** Handles the `NotFoundRoute` operation. */
 export default function NotFoundRoute() {
 	const navigate = useNavigate();
 

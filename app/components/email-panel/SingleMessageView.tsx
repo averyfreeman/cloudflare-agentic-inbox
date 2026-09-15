@@ -13,6 +13,7 @@ interface SingleMessageViewProps {
 	onPreviewImage: (url: string, filename: string) => void;
 }
 
+/** Handles the `SingleMessageView` operation. */
 export default function SingleMessageView({
 	email,
 	mailboxId,

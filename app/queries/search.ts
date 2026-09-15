@@ -8,6 +8,7 @@ import api from "~/services/api";
 import type { Email } from "~/types";
 import { queryKeys } from "./keys";
 
+/** Shared `SEARCH_PAGE_SIZE` configuration or API value. */
 export const SEARCH_PAGE_SIZE = 25;
 
 interface SearchResponse {
@@ -15,6 +16,7 @@ interface SearchResponse {
 	totalCount: number;
 }
 
+/** Handles the `useSearchEmails` operation. */
 export function useSearchEmails(
 	mailboxId: string | undefined,
 	query: string,

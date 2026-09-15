@@ -41,6 +41,7 @@ interface EmailPanelToolbarProps {
 	onDelete: () => void;
 }
 
+/** Handles the `EmailPanelToolbar` operation. */
 export default function EmailPanelToolbar({
 	email,
 	mailboxId,

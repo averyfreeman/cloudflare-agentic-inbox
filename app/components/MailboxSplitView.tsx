@@ -12,6 +12,7 @@ interface MailboxSplitViewProps {
 	children: ReactNode;
 }
 
+/** Handles the `MailboxSplitView` operation. */
 export default function MailboxSplitView({
 	selectedEmailId,
 	isComposing,

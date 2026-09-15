@@ -55,6 +55,7 @@ function getSourceHeaders(msg: Email): { key: string; value: string }[] {
 	return headers;
 }
 
+/** Handles the `EmailPanelDialogs` operation. */
 export default function EmailPanelDialogs({
 	sourceViewEmail,
 	previewImage,

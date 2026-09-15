@@ -11,6 +11,7 @@ import { createMiddleware } from "hono/factory";
 import type { MailboxDO } from "../durableObject";
 import type { Env } from "../types";
 
+/** Describes the `MailboxContext` data contract. */
 export type MailboxContext = {
 	Bindings: Env;
 	Variables: {
@@ -18,6 +19,7 @@ export type MailboxContext = {
 	};
 };
 
+/** Shared `requireMailbox` configuration or API value. */
 export const requireMailbox = createMiddleware<MailboxContext>(async (c, next) => {
 	const rawId = c.req.param("mailboxId");
 	if (!rawId) return c.json({ error: "Mailbox ID required" }, 400);

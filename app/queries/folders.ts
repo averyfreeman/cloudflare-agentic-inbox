@@ -7,6 +7,7 @@ import api from "~/services/api";
 import type { Folder } from "~/types";
 import { queryKeys } from "./keys";
 
+/** Handles the `useFolders` operation. */
 export function useFolders(mailboxId: string | undefined) {
 	return useQuery<Folder[]>({
 		queryKey: mailboxId
@@ -17,6 +18,7 @@ export function useFolders(mailboxId: string | undefined) {
 	});
 }
 
+/** Handles the `useCreateFolder` operation. */
 export function useCreateFolder() {
 	const qc = useQueryClient();
 	return useMutation({
@@ -31,6 +33,7 @@ export function useCreateFolder() {
 	});
 }
 
+/** Handles the `useUpdateFolder` operation. */
 export function useUpdateFolder() {
 	const qc = useQueryClient();
 	return useMutation({
@@ -46,6 +49,7 @@ export function useUpdateFolder() {
 	});
 }
 
+/** Handles the `useDeleteFolder` operation. */
 export function useDeleteFolder() {
 	const qc = useQueryClient();
 	return useMutation({

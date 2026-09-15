@@ -29,6 +29,7 @@ function EmailPanelSkeleton() {
 	);
 }
 
+/** Handles the `EmailPanel` operation. */
 export default function EmailPanel({ emailId }: { emailId: string }) {
 	const { mailboxId, folder } = useParams<{ mailboxId: string; folder: string }>();
 	const { data: email } = useEmail(mailboxId, emailId) as { data?: Email };

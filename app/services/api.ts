@@ -6,6 +6,7 @@ import type { Email, Folder, Mailbox } from "~/types";
 
 const REQUEST_TIMEOUT_MS = 30_000;
 
+/** Provides the `ApiError` runtime behavior. */
 export class ApiError extends Error {
 	status: number;
 	body: Record<string, unknown>;

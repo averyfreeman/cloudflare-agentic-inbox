@@ -40,6 +40,7 @@ function LazyAgentPanel() {
 	return <AgentChat />;
 }
 
+/** Handles the `AgentSidebar` operation. */
 export default function AgentSidebar() {
 	const [activeTab, setActiveTab] = useState<"agent" | "mcp">("agent");
 

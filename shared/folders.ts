@@ -19,6 +19,7 @@ export const Folders = {
 	SPAM: "spam",
 } as const;
 
+/** Describes the `FolderId` data contract. */
 export type FolderId = (typeof Folders)[keyof typeof Folders];
 
 /**

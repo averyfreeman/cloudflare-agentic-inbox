@@ -8,6 +8,7 @@ export interface SignatureSettings {
 	html?: string;
 }
 
+/** Describes the `MailboxSettings` data contract. */
 export interface MailboxSettings {
 	fromName?: string;
 	forwarding?: { enabled: boolean; email: string };
@@ -16,6 +17,7 @@ export interface MailboxSettings {
 	agentSystemPrompt?: string;
 }
 
+/** Describes the `Mailbox` data contract. */
 export interface Mailbox {
 	id: string;
 	email: string;
@@ -23,6 +25,7 @@ export interface Mailbox {
 	settings?: MailboxSettings;
 }
 
+/** Describes the `Email` data contract. */
 export interface Email {
 	id: string;
 	thread_id?: string | null;
@@ -50,6 +53,7 @@ export interface Email {
 	has_draft?: boolean;
 }
 
+/** Describes the `Attachment` data contract. */
 export interface Attachment {
 	id: string;
 	filename: string;
@@ -59,6 +63,7 @@ export interface Attachment {
 	disposition?: string;
 }
 
+/** Describes the `Folder` data contract. */
 export interface Folder {
 	id: string;
 	name: string;

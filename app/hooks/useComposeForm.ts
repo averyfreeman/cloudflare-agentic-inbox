@@ -162,6 +162,7 @@ function buildInitialComposeFields(
 	};
 }
 
+/** Handles the `useComposeForm` operation. */
 export function useComposeForm(mailboxId?: string, _folder?: string) {
 	const toastManager = useKumoToastManager();
 	const { composeOptions, closePanel, closeCompose } = useUIStore();

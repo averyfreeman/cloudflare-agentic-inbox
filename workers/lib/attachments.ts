@@ -8,6 +8,7 @@
  */
 import type { Env } from "../types";
 
+/** Describes the `StoredAttachment` data contract. */
 export interface StoredAttachment {
 	id: string;
 	email_id: string;

@@ -521,6 +521,7 @@ function AgentChatConnected({
 	);
 }
 
+/** Handles the `AgentPanel` operation. */
 export default function AgentPanel() {
 	const { mailboxId } = useParams<{ mailboxId: string }>();
 	const [hooks, setHooks] = useState<{

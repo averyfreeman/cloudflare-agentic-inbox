@@ -95,6 +95,7 @@ function decodeHtmlEntities(text: string): string {
 		.replace(/&nbsp;/g, " ");
 }
 
+/** Handles the `getSnippetText` operation. */
 export function getSnippetText(
 	snippet?: string | null,
 	maxLength = 100,
@@ -196,10 +197,12 @@ export function rewriteInlineImages(
 	return result;
 }
 
+/** Handles the `getNonInlineAttachments` operation. */
 export function getNonInlineAttachments(attachments?: Attachment[]): Attachment[] {
 	return attachments?.filter((attachment) => attachment.disposition !== "inline") ?? [];
 }
 
+/** Handles the `getAttachmentUrl` operation. */
 export function getAttachmentUrl(
 	mailboxId: string,
 	emailId: string,
@@ -208,6 +211,7 @@ export function getAttachmentUrl(
 	return `/api/v1/mailboxes/${mailboxId}/emails/${emailId}/attachments/${attachmentId}`;
 }
 
+/** Handles the `downloadFile` operation. */
 export function downloadFile(url: string, filename: string) {
 	const link = document.createElement("a");
 	link.href = url;

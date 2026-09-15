@@ -73,6 +73,7 @@ function FolderLink({
 	);
 }
 
+/** Handles the `Sidebar` operation. */
 export default function Sidebar() {
 	const { mailboxId } = useParams<{ mailboxId: string }>();
 	const navigate = useNavigate();

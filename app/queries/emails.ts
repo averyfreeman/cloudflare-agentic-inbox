@@ -47,6 +47,7 @@ export function useEmails(
 	});
 }
 
+/** Handles the `useEmail` operation. */
 export function useEmail(
 	mailboxId: string | undefined,
 	emailId: string | undefined,
@@ -60,6 +61,7 @@ export function useEmail(
 	});
 }
 
+/** Handles the `useThreadReplies` operation. */
 export function useThreadReplies(
 	mailboxId: string | undefined,
 	threadId: string | undefined | null,
@@ -104,6 +106,7 @@ function useInvalidateEmailData() {
 	};
 }
 
+/** Handles the `useSendEmail` operation. */
 export function useSendEmail() {
 	const invalidate = useInvalidateEmailData();
 	return useMutation({
@@ -116,6 +119,7 @@ export function useSendEmail() {
 	});
 }
 
+/** Handles the `useUpdateEmail` operation. */
 export function useUpdateEmail() {
 	const qc = useQueryClient();
 	return useMutation({
@@ -187,6 +191,7 @@ export function useUpdateEmail() {
 	});
 }
 
+/** Handles the `useMarkThreadRead` operation. */
 export function useMarkThreadRead() {
 	const qc = useQueryClient();
 	return useMutation({
@@ -204,6 +209,7 @@ export function useMarkThreadRead() {
 	});
 }
 
+/** Handles the `useDeleteEmail` operation. */
 export function useDeleteEmail() {
 	const invalidate = useInvalidateEmailData();
 	return useMutation({
@@ -216,6 +222,7 @@ export function useDeleteEmail() {
 	});
 }
 
+/** Handles the `useMoveEmail` operation. */
 export function useMoveEmail() {
 	const invalidate = useInvalidateEmailData();
 	return useMutation({
@@ -229,6 +236,7 @@ export function useMoveEmail() {
 	});
 }
 
+/** Handles the `useSaveDraft` operation. */
 export function useSaveDraft() {
 	const invalidate = useInvalidateEmailData();
 	return useMutation({
@@ -252,6 +260,7 @@ export function useSaveDraft() {
 	});
 }
 
+/** Handles the `useReplyToEmail` operation. */
 export function useReplyToEmail() {
 	const invalidate = useInvalidateEmailData();
 	return useMutation({
@@ -265,6 +274,7 @@ export function useReplyToEmail() {
 	});
 }
 
+/** Handles the `useForwardEmail` operation. */
 export function useForwardEmail() {
 	const invalidate = useInvalidateEmailData();
 	return useMutation({

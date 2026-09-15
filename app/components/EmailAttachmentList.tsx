@@ -15,6 +15,7 @@ interface EmailAttachmentListProps {
 	showHeading?: boolean;
 }
 
+/** Handles the `EmailAttachmentList` operation. */
 export default function EmailAttachmentList({
 	mailboxId,
 	emailId,

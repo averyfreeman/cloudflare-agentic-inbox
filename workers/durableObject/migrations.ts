@@ -81,6 +81,7 @@ function txn(sql: string): string {
 	return `BEGIN TRANSACTION;\n${trimmed}\nCOMMIT;`;
 }
 
+/** Shared `mailboxMigrations` configuration or API value. */
 export const mailboxMigrations: Migration[] = [
 	{
 		name: "1_initial_setup",

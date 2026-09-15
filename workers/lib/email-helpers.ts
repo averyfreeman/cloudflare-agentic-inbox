@@ -70,6 +70,7 @@ export function validateSender(
 	return { toStr, fromEmail, fromDomain };
 }
 
+/** Provides the `SenderValidationError` runtime behavior. */
 export class SenderValidationError extends Error {
 	constructor(message: string) {
 		super(message);

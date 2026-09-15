@@ -24,10 +24,12 @@ import {
 } from "~/queries/mailboxes";
 import { queryKeys } from "~/queries/keys";
 
+/** Handles the `meta` operation. */
 export function meta() {
 	return [{ title: "Agentic Inbox" }];
 }
 
+/** Handles the `HomeRoute` operation. */
 export default function HomeRoute() {
 	const toastManager = useKumoToastManager();
 	const { data: mailboxes = [], refetch: refetchMailboxes, isFetched: mailboxesFetched } = useMailboxes();

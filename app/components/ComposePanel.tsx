@@ -8,6 +8,7 @@ import { useParams } from "react-router";
 import { useComposeForm } from "~/hooks/useComposeForm";
 import RichTextEditor from "./RichTextEditor";
 
+/** Handles the `ComposePanel` operation. */
 export default function ComposePanel() {
 	const { mailboxId, folder } = useParams<{
 		mailboxId: string;

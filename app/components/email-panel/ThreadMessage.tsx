@@ -53,6 +53,7 @@ function Avatar({ isDraft, isSelf, sender }: { isDraft?: boolean; isSelf: boolea
 	);
 }
 
+/** Handles the `ThreadMessage` operation. */
 export default function ThreadMessage({
 	email,
 	mailboxId,

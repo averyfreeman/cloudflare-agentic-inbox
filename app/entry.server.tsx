@@ -7,6 +7,7 @@ import { ServerRouter } from "react-router";
 import { isbot } from "isbot";
 import { renderToReadableStream } from "react-dom/server";
 
+/** Handles the `handleRequest` operation. */
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,

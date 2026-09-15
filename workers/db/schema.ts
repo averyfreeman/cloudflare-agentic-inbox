@@ -4,12 +4,14 @@
 
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
+/** Shared `folders` configuration or API value. */
 export const folders = sqliteTable("folders", {
 	id: text("id").primaryKey(),
 	name: text("name").notNull().unique(),
 	is_deletable: integer("is_deletable").notNull().default(1),
 });
 
+/** Shared `emails` configuration or API value. */
 export const emails = sqliteTable("emails", {
 	id: text("id").primaryKey(),
 	folder_id: text("folder_id")
@@ -31,6 +33,7 @@ export const emails = sqliteTable("emails", {
 	raw_headers: text("raw_headers"),
 });
 
+/** Shared `attachments` configuration or API value. */
 export const attachments = sqliteTable("attachments", {
 	id: text("id").primaryKey(),
 	email_id: text("email_id")

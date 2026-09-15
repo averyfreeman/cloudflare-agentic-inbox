@@ -15,6 +15,7 @@ export { EmailAgent } from "./agent";
 export { EmailMCP } from "./mcp";
 
 declare module "react-router" {
+/** Describes the `AppLoadContext` data contract. */
 	export interface AppLoadContext {
 		cloudflare: {
 			env: Env;
