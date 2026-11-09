@@ -17,3 +17,15 @@ opencode.jsonc
 skills-lock.json
 .DS_Store
 worker-configuration.d.ts
+
+# Local credentials and generated development files
+.venv/
+.build/
+.uv-cache/
+.gocache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.next/
+.gradle/
+.env*

@@ -68,6 +68,31 @@ npm run dev
 npm run deploy
 ```
 
+### Downstream refresh and isolated environments
+
+This downstream branch keeps the upstream repository mergeable without putting
+the production inbox at risk. The refresh check fetches `upstream/main` and
+tests the merge in a temporary worktree; it preserves the local `.ai-architect`
+plans and `assets/` directory. Use `--apply` only after reviewing the check:
+
+```bash
+pnpm run refresh:check
+pnpm run refresh:simulate-conflict
+pnpm run refresh:apply
+```
+
+The `staging` and `recovery` Wrangler environments use separate Worker names
+and R2 buckets, have no routes, and do not bind Email Service. They are
+intended for staged validation and pristine-upstream recovery respectively:
+
+```bash
+pnpm exec wrangler deploy --env staging
+pnpm exec wrangler deploy --env recovery
+```
+
+Neither environment receives production email automatically; configure any
+test ingress explicitly and never reuse production Access secrets.
+
 ## Prerequisites
 
 - Cloudflare account with a domain

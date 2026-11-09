@@ -1,0 +1,144 @@
+schema_version: 1.0.0
+revision: 1
+scope: agentic-inbox
+architecture_style: modular-monolith-with-ports-and-adapters
+quality_attributes:
+  - name: upstream-mergeability
+    priority: 1
+    rationale: Downstream behavior must be refreshable from upstream without hiding local ownership.
+    measurable_signal: An upstream refresh produces an auditable patch result and either passes gates or reports conflicts before promotion.
+  - name: provider-replaceability
+    priority: 1
+    rationale: AI and email providers must be replaceable without changing mailbox policy or user-facing workflows.
+    measurable_signal: Provider adapters can be exercised behind stable interfaces with failure and fallback tests.
+  - name: mailbox-safety
+    priority: 1
+    rationale: Inbound mail, drafts, attachments, and explicit-send approval must not be silently lost or bypassed.
+    measurable_signal: Every accepted inbound item has an idempotent processing result, and send authorization is recorded and testable.
+  - name: reversible-operations
+    priority: 2
+    rationale: A pristine upstream deployment must remain available for diagnosis without corrupting custom state.
+    measurable_signal: Recovery deployment uses isolated Durable Object and R2 namespaces and has a documented promotion or rollback check.
+components:
+  - id: mailbox-domain
+    responsibility: Own mailbox workflows, message and draft policy, threading, and explicit-send approval.
+    owns_data:
+      - mailbox metadata
+      - messages and threads
+      - drafts and send approvals
+    public_interfaces:
+      - mailbox-use-cases
+  - id: ai-orchestrator
+    responsibility: Coordinate prompts, tool calling, injection checks, draft verification, retries, and provider fallback.
+    owns_data:
+      - ai execution metadata
+      - provider and model selection configuration
+    public_interfaces:
+      - ai-completion
+      - draft-verification
+  - id: email-transport
+    responsibility: Receive, parse, route, and send email through configured transport adapters.
+    owns_data:
+      - delivery outcomes
+      - idempotency records
+    public_interfaces:
+      - inbound-email
+      - outbound-email
+  - id: access-boundary
+    responsibility: Enforce the current one-operator access policy and define the seam for future mailbox authorization.
+    owns_data:
+      - access policy configuration
+    public_interfaces:
+      - authorized-mailbox-request
+  - id: integration-adapters
+    responsibility: Expose narrowly scoped external integrations such as EmDash and local assistants without sharing storage schemas.
+    owns_data: []
+    public_interfaces:
+      - integration-read
+      - integration-notify
+  - id: operations
+    responsibility: Run upstream refresh, quality gates, isolated recovery deployment, observability, and promotion controls.
+    owns_data:
+      - deployment and verification records
+    public_interfaces:
+      - upstream-refresh
+      - promotion-and-rollback
+external_boundaries:
+  - id: openai-api-gateway
+    responsibility: Provide the primary quality-oriented model route with logging, limits, retries, and fallback controls.
+  - id: workers-ai
+    responsibility: Provide the Cloudflare-native low-maintenance model fallback.
+  - id: cloudflare-email-service
+    responsibility: Provide configured inbound routing and outbound email transport.
+  - id: cloudflare-access
+    responsibility: Authenticate the operator at the application boundary.
+  - id: emdash-api
+    responsibility: Accept narrowly scoped integration requests through an EmDash plugin API route.
+  - id: upstream-repository
+    responsibility: Provide the pristine upstream source and update base.
+dependency_rules:
+  - source: mailbox-domain
+    target: ai-orchestrator
+    policy: allow-via-interface
+    via_interface: ai-completion
+    rationale: Mailbox policy must request AI behavior through an application interface, not a model SDK.
+  - source: mailbox-domain
+    target: email-transport
+    policy: allow-via-interface
+    via_interface: outbound-email
+    rationale: Explicit-send policy must control transport through a stable boundary.
+  - source: email-transport
+    target: cloudflare-email-service
+    policy: allow
+    rationale: The configured email adapter may call Cloudflare Email Service.
+  - source: ai-orchestrator
+    target: openai-api-gateway
+    policy: allow
+    rationale: The OpenAI adapter may call the configured AI Gateway route.
+  - source: ai-orchestrator
+    target: workers-ai
+    policy: allow
+    rationale: The Workers AI adapter may call the configured Cloudflare-native fallback.
+  - source: mailbox-domain
+    target: openai-api-gateway
+    policy: deny
+    rationale: Mailbox policy must not depend directly on an external model provider.
+  - source: mailbox-domain
+    target: workers-ai
+    policy: deny
+    rationale: Mailbox policy must not depend directly on a Workers AI model identifier.
+  - source: mailbox-domain
+    target: cloudflare-email-service
+    policy: deny
+    rationale: Mailbox policy must not embed transport-specific behavior.
+  - source: integration-adapters
+    target: emdash-api
+    policy: allow
+    rationale: The EmDash adapter may call only the declared, capability-scoped integration endpoint.
+  - source: operations
+    target: upstream-repository
+    policy: allow
+    rationale: Refresh tooling must fetch and compare the configured upstream source.
+required_practices:
+  - Keep provider and transport configuration outside mailbox policy modules.
+  - Record retry, fallback, idempotency, and delivery outcomes with redacted observability.
+  - Preserve the original draft when verification or provider execution fails.
+  - Keep recovery state isolated until compatibility is proven.
+prohibited_practices:
+  - Hard-code a provider model in mailbox workflows.
+  - Share production Durable Object or R2 state with the pristine-upstream recovery Worker before migration validation.
+  - Give EmDash direct access to Agentic Inbox Durable Object or SQLite schemas.
+  - Allow an AI-generated response to bypass explicit-send approval.
+decision_ids:
+  - ADR-001
+unresolved_questions:
+  - id: Q-001
+    question: Which production OpenAI model and budget limits meet the quality and cost target after representative inbox evaluation?
+    decision_impact: Determines the primary adapter configuration, gateway limits, and fallback thresholds.
+    critical: false
+    answer: null
+  - id: Q-002
+    question: Which selected mailbox fields and notification events should the first EmDash plugin expose?
+    decision_impact: Determines the plugin route contract and least-privilege capability set.
+    critical: false
+    answer: null

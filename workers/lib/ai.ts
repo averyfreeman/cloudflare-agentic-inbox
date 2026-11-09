@@ -29,7 +29,6 @@ export async function isPromptInjection(ai: Ai, bodyHtml: string | null | undefi
 
 	try {
 		const response = (await ai.run(
-			// @ts-expect-error — model string not in generated union
 			"@cf/meta/llama-3.1-8b-instruct-fast",
 			{
 				messages: [
@@ -183,8 +182,8 @@ export async function verifyDraft(ai: Ai, body: string): Promise<string> {
 			? `${cleanedTrimmed}\n\n${quotedBlock}`
 			: cleanedTrimmed;
 	} catch (e) {
-				console.error("AI failed — returns empty body, callers may save blank draft:", (e as Error).message);
-		return "";
+		console.error("AI failed, preserving original draft:", (e as Error).message);
+		return body;
 	}
 }
 

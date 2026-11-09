@@ -75,5 +75,77 @@
 				"EmailMCP"
 			]
 		}
-	]
+	],
+	"env": {
+		"staging": {
+			"name": "agentic-inbox-staging",
+			"vars": {
+				"DOMAINS": "",
+				"EMAIL_ADDRESSES": []
+			},
+			"send_email": [],
+			"r2_buckets": [
+				{
+					"binding": "BUCKET",
+					"bucket_name": "agentic-inbox-staging",
+					"preview_bucket_name": "agentic-inbox-staging"
+				}
+			],
+			"durable_objects": {
+				"bindings": [
+					{
+						"name": "MAILBOX",
+						"class_name": "MailboxDO"
+					},
+					{
+						"name": "EMAIL_AGENT",
+						"class_name": "EmailAgent"
+					},
+					{
+						"name": "EMAIL_MCP",
+						"class_name": "EmailMCP"
+					}
+				]
+			},
+			"ai": {
+				"binding": "AI"
+			},
+			"routes": []
+		},
+		"recovery": {
+			"name": "agentic-inbox-recovery",
+			"vars": {
+				"DOMAINS": "",
+				"EMAIL_ADDRESSES": []
+			},
+			"send_email": [],
+			"r2_buckets": [
+				{
+					"binding": "BUCKET",
+					"bucket_name": "agentic-inbox-recovery",
+					"preview_bucket_name": "agentic-inbox-recovery"
+				}
+			],
+			"durable_objects": {
+				"bindings": [
+					{
+						"name": "MAILBOX",
+						"class_name": "MailboxDO"
+					},
+					{
+						"name": "EMAIL_AGENT",
+						"class_name": "EmailAgent"
+					},
+					{
+						"name": "EMAIL_MCP",
+						"class_name": "EmailMCP"
+					}
+				]
+			},
+			"ai": {
+				"binding": "AI"
+			},
+			"routes": []
+		}
+	}
 }
